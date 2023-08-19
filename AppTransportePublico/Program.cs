@@ -8,6 +8,17 @@ namespace AppTransportePublico
 {
     internal class Program
     {
+        static int ConvertirEntero(string numeroString)
+        {
+            if (int.TryParse(numeroString, out int numeroInt))
+            {
+                return numeroInt;
+            }
+            else
+            {
+                return 0;
+            }
+        }
         private static void InicializarLista(List<TransportePublico> transportesPublicos)
         {
             for (int i = 0; i < 5; i++)
@@ -24,7 +35,6 @@ namespace AppTransportePublico
         private static void CargarPasajeros(List<TransportePublico> transportesPublicos)
         {
             string opcionCarga;
-            string cantPasajerosString;
             do
             {
                 Console.WriteLine("*********CARGA DE PASAJEROS*********");
@@ -41,68 +51,62 @@ namespace AppTransportePublico
                 }
                 Console.WriteLine("11-VOLVER AL MENU ANTERIOR");
                 Console.Write("\nIngrese una opción: ");
+                
                 opcionCarga = Console.ReadLine();
-
-                if (int.TryParse(opcionCarga, out int opcionCargaInt))
+                int opcionCargaInt = ConvertirEntero(opcionCarga);
+                
+                if (opcionCargaInt < 1 || opcionCargaInt > 10)
                 {
-                    if (opcionCargaInt < 1 || opcionCargaInt > 10)
+                    if (!(opcionCargaInt == 11))
                     {
-                        if (!(opcionCargaInt == 11))
+                        Console.WriteLine("Opcion no valida, intente nuevamente");
+                        Console.ReadKey();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"\nLa opcion {opcionCargaInt} está seleccionada");
+                    Console.WriteLine($"Ingrese la cantidad de pasajeros");
+                    Console.SetCursorPosition(23, opcionCargaInt + 2);
+                    string cantPasajerosString = Console.ReadLine();
+                    try
+                    {
+                        int cantPasajerosInt = Convert.ToInt32(cantPasajerosString);
+                        if (cantPasajerosInt > transportesPublicos[opcionCargaInt - 1].CantMaxPasajeros)
                         {
-                            Console.WriteLine("Opcion no valida, intente nuevamente");
+                            Console.SetCursorPosition(26, opcionCargaInt + 2);
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            Console.Write($"Capacidad máxima {transportesPublicos[opcionCargaInt - 1].CantMaxPasajeros} pasajeros, presione una tecla para continuar...");
+                            Console.ResetColor();
                             Console.ReadKey();
                         }
-                    }
-                    else
-                    {
-                        Console.WriteLine($"\nLa opcion {opcionCargaInt} está seleccionada");
-                        Console.WriteLine($"Ingrese la cantidad de pasajeros");
-                        Console.SetCursorPosition(23, opcionCargaInt + 2);
-                        cantPasajerosString = Console.ReadLine();
-                        if (int.TryParse(cantPasajerosString, out int cantPasajerosInt))
+                        else
                         {
-                            if (cantPasajerosInt > transportesPublicos[opcionCargaInt - 1].CantMaxPasajeros)
+                            if (cantPasajerosInt < 0)
                             {
                                 Console.SetCursorPosition(26, opcionCargaInt + 2);
                                 Console.ForegroundColor = ConsoleColor.Black;
                                 Console.BackgroundColor = ConsoleColor.Red;
-                                Console.Write($"Capacidad máxima {transportesPublicos[opcionCargaInt - 1].CantMaxPasajeros} pasajeros, presione una tecla para continuar...");
+                                Console.Write("No se pueden poner valores negativos, presione una tecla para continuar...");
                                 Console.ResetColor();
                                 Console.ReadKey();
                             }
                             else
                             {
-                                if (cantPasajerosInt < 0)
-                                {
-                                    Console.SetCursorPosition(26, opcionCargaInt + 2);
-                                    Console.ForegroundColor = ConsoleColor.Black;
-                                    Console.BackgroundColor = ConsoleColor.Red;
-                                    Console.Write("No se pueden poner valores negativos, presione una tecla para continuar...");
-                                    Console.ResetColor();
-                                    Console.ReadKey();
-                                }
-                                else
-                                {
-                                    transportesPublicos[opcionCargaInt - 1].CantPasajeros = cantPasajerosInt;
-                                }
+                                transportesPublicos[opcionCargaInt - 1].CantPasajeros = cantPasajerosInt;
                             }
                         }
-                        else
-                        {
-                            Console.SetCursorPosition(26, opcionCargaInt + 2);
-                            Console.ForegroundColor = ConsoleColor.Black;
-                            Console.BackgroundColor = ConsoleColor.Red;
-                            Console.Write("Solo numeros, presione una tecla para continuar...");
-                            Console.ResetColor();
-                            Console.ReadKey();
-                        }
-
                     }
-                }
-                else
-                {
-                    Console.WriteLine("Solo numeros, intente de nuevo");
-                    Console.ReadKey();
+                    catch (FormatException)
+                    {
+                        Console.SetCursorPosition(26, opcionCargaInt + 2);
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.Write("Igrese solo valores numericos, presione una tecla para continuar...");
+                        Console.ResetColor();
+                        Console.ReadKey();
+                    }
                 }
                 Console.Clear();
             } while (opcionCarga != "11");
@@ -144,32 +148,25 @@ namespace AppTransportePublico
                 Console.WriteLine("11-VOLVER AL MENU ANTERIOR");
                 Console.Write("\nSeleccione el transporte que desea cambiar el estado: ");
                 stringSeleccion = Console.ReadLine();
-                if (int.TryParse(stringSeleccion, out int intSeleccion))
+                int intSeleccion = ConvertirEntero(stringSeleccion);
+                if (intSeleccion > 0 && intSeleccion < 11)
                 {
-                    if (intSeleccion > 0 && intSeleccion < 11)
+                    if (transportesPublicos[intSeleccion - 1].Estado == "Detenido")
                     {
-                        if (transportesPublicos[intSeleccion - 1].Estado == "Detenido")
-                        {
-                            transportesPublicos[intSeleccion - 1].Avanzar();
-                        } 
-                        else
-                        {
-                            transportesPublicos[intSeleccion - 1].Detenerse();
-                        }
-                    }
+                        transportesPublicos[intSeleccion - 1].Avanzar();
+                    } 
                     else
                     {
-                        if (intSeleccion != 11)
-                        {
-                            Console.WriteLine("Opcion no valida, intente nuevamente");
-                            Console.ReadKey();
-                        }
+                        transportesPublicos[intSeleccion - 1].Detenerse();
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Debe ingresar un número");
-                    Console.ReadKey();
+                    if (intSeleccion != 11)
+                    {
+                        Console.WriteLine("Opcion no valida, intente nuevamente");
+                        Console.ReadKey();
+                    }
                 }
                 Console.Clear();
             } while (stringSeleccion != "11");
@@ -177,6 +174,7 @@ namespace AppTransportePublico
         static int Menu()
         {
             string opcionMenu;
+            
             Console.WriteLine("\tAPP de TRANSPORTE PUBLICO");
             Console.SetCursorPosition(2, 2);
             Console.WriteLine("*****MENU PRINCIPAL*****");
@@ -186,14 +184,8 @@ namespace AppTransportePublico
             Console.WriteLine("  4-\t SALIR");
             Console.Write("\nIngrese una opción: ");
             opcionMenu = Console.ReadLine();
-            if (int.TryParse(opcionMenu, out int opcionMenuInt))
-            {
-                return opcionMenuInt;
-            }
-            else
-            {
-                return 0;
-            }
+            
+            return ConvertirEntero(opcionMenu);
         }
         
         static void Main()
