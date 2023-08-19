@@ -174,8 +174,9 @@ namespace AppTransportePublico
                 Console.Clear();
             } while (stringSeleccion != "11");
         }
-        static void Menu()
+        static int Menu()
         {
+            string opcionMenu;
             Console.WriteLine("\tAPP de TRANSPORTE PUBLICO");
             Console.SetCursorPosition(2, 2);
             Console.WriteLine("*****MENU PRINCIPAL*****");
@@ -184,23 +185,27 @@ namespace AppTransportePublico
             Console.WriteLine("  3-\t Ver transporte");
             Console.WriteLine("  4-\t SALIR");
             Console.Write("\nIngrese una opción: ");
+            opcionMenu = Console.ReadLine();
+            if (int.TryParse(opcionMenu, out int opcionMenuInt))
+            {
+                return opcionMenuInt;
+            }
+            else
+            {
+                return 0;
+            }
         }
         
-        static void Main(string[] args)
+        static void Main()
         {
-            string opcionMenu;
-            
+            int opcion;
             List<TransportePublico> transportesPublicos = new List<TransportePublico>();
             InicializarLista(transportesPublicos);
-            
             do
             {
-                Menu();
-                opcionMenu = Console.ReadLine();
-                if (int.TryParse(opcionMenu, out int opcionMenuInt))
+                opcion = Menu();
+                switch (opcion)
                 {
-                    switch (opcionMenuInt)
-                    {
                     case 1:
                         Console.Clear();
                         CargarPasajeros(transportesPublicos);
@@ -223,15 +228,8 @@ namespace AppTransportePublico
                         Console.ReadKey();
                         Console.Clear();
                         break;
-                    }
                 }
-                else
-                {
-                    Console.WriteLine("Solo debe ingresar números, intente nuevamente");
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-            } while (opcionMenu != "4");
+            } while (opcion != 4);
             Console.WriteLine($"\nGRACIAS POR UTILIZAR NUESTRA APP!!!");
             Console.WriteLine($"\nPresione una tecla para salir...");
             Console.ReadKey();
