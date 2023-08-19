@@ -1,4 +1,4 @@
-# PRACTICA 1
+# PRACTICA 1 - GASTON BORTOLI
 Aplicación de consola hecha en .net framework con C#
 Es un pequeño programa donde nos permite cargar la cantidad de pasajeros de una flota de transporte publico, y podemos dar la orden si deben detenerse o se pueden poner en marcha.
 
