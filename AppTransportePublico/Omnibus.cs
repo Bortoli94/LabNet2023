@@ -14,15 +14,13 @@ namespace AppTransportePublico
         public override int CantMaxPasajeros => 20;
         public override string Tipo => "Omnibus";
         public override string Estado { get => base.Estado; set => base.Estado = value; }
-        public override string Avanzar()
+        public override void Avanzar()
         {
             Estado = "En marcha";
-            return "En marcha";
         }
-        public override string Detenerse()
+        public override void Detenerse()
         {
             Estado = "Detenido";
-            return "Detenido";
         }
     }
 }

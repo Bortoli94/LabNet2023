@@ -17,7 +17,7 @@ namespace AppTransportePublico
         public abstract int CantMaxPasajeros { get; }
         public abstract string Tipo { get; }
         public virtual string Estado { get; set; }
-        public abstract string Avanzar();
-        public abstract string Detenerse();
+        public abstract void Avanzar();
+        public abstract void Detenerse();
     }
 }
