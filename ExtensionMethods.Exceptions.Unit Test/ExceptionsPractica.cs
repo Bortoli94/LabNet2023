@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExtensionMethods.Exceptions.Unit_Test
 {
-    internal class ExceptionsPractica
+    public class ExceptionsPractica
     {
         public static void DividirPorCero(int i)
         {
             try
             {
+                Console.WriteLine($"{i} / 0 = ");
                 int dividir = i / 0;
             }
             catch (Exception ex)

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ExtensionMethods.Exceptions.Unit_Test
 {
@@ -46,6 +43,27 @@ namespace ExtensionMethods.Exceptions.Unit_Test
                 Console.WriteLine("Ha finalizado el segundo ejercicio");
             }
 
+
+            Console.WriteLine("\nEjercicio 3");
+            try
+            {
+                Logic.TirarExcepcion();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            Console.WriteLine("\nEjercicio 4");
+            try
+            {
+                Logic.TirarExcepcionPersonalizada();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Tipo: " + ex.GetType());
+            }
 
             Console.ReadKey();
         }
