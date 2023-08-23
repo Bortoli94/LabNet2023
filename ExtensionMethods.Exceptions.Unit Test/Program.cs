@@ -11,15 +11,15 @@ namespace ExtensionMethods.Exceptions.Unit_Test
             string numIngresado;
 
             Console.WriteLine("Ejercicio 1");
-            Console.Write("Ingrese un numero: ");
-            numIngresado = Console.ReadLine();
-            while (!int.TryParse(numIngresado, out numConvertido))
-            {
-                Console.Write("Ingrese un numero valido: ");
-                numIngresado = Console.ReadLine();
-            }
             try
             {
+                Console.Write("Ingrese un numero: ");
+                numIngresado = Console.ReadLine();
+                while (!int.TryParse(numIngresado, out numConvertido))
+                {
+                    Console.Write("Ingrese un numero valido: ");
+                    numIngresado = Console.ReadLine();
+                }
                 Console.WriteLine(ExceptionsPractica.DividirPorCero(numConvertido));
             }
             catch (Exception ex)
@@ -68,7 +68,11 @@ namespace ExtensionMethods.Exceptions.Unit_Test
             catch (Exception ex)
             {
                 Console.WriteLine("Mensaje: " + ex.Message);
-                Console.WriteLine("Tipo de excepcion: " + ex.Message);
+                Console.WriteLine("Tipo de excepcion: " + ex.GetType());
+            }
+            finally
+            {
+                Console.WriteLine("Ha finalizado el tercer ejercicio");
             }
 
             Console.WriteLine("\nEjercicio 4");
@@ -80,6 +84,10 @@ namespace ExtensionMethods.Exceptions.Unit_Test
             {
                 Console.WriteLine("Mensaje: " + ex.Message);
                 Console.WriteLine("Tipo de excepcion: " + ex.GetType());
+            }
+            finally
+            {
+                Console.WriteLine("Ha finalizado el cuarto ejercicio");
             }
 
             Console.ReadKey();
