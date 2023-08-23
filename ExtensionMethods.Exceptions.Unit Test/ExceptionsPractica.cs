@@ -4,35 +4,17 @@ namespace ExtensionMethods.Exceptions.Unit_Test
 {
     public class ExceptionsPractica
     {
-        public static void DividirPorCero(int i)
+        public static int DividirPorCero(int i)
         {
-            try
-            {
-                Console.WriteLine($"{i} / 0 = ");
-                int dividir = i / 0;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                Console.WriteLine("Ha finalizado el primer ejercicio");
-            }
+            Console.WriteLine($"{i} / 0 = ");
+            return  i / 0;
         }
 
-        public static void Dividir(int dividendo, int divisor)
+        public static float Dividir(int dividendo, int divisor)
         {
-            try
-            {
-                float resultado = dividendo / divisor;
-                Console.WriteLine($"{dividendo} / {divisor} = {resultado}");
-            }
-            catch (DivideByZeroException ex)
-            {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("¡Solo Chuck Norris divide por cero!");
-            }
+            float resultado = dividendo / divisor;
+            Console.WriteLine($"{dividendo} / {divisor} = {resultado}");
+            return resultado;
         }
     }
 }

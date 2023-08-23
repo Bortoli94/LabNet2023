@@ -18,7 +18,18 @@ namespace ExtensionMethods.Exceptions.Unit_Test
                 Console.Write("Ingrese un numero valido: ");
                 numIngresado = Console.ReadLine();
             }
-            ExceptionsPractica.DividirPorCero(numConvertido);
+            try
+            {
+                Console.WriteLine(ExceptionsPractica.DividirPorCero(numConvertido));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Ha finalizado el primer ejercicio");
+            }
 
 
             Console.WriteLine("\nEjercicio 2");
@@ -38,6 +49,11 @@ namespace ExtensionMethods.Exceptions.Unit_Test
             {
                 Console.WriteLine("¡Seguro Ingreso una letra o no ingreso nada!");
             }
+            catch (DivideByZeroException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("¡Solo Chuck Norris divide por cero!");
+            }
             finally
             {
                 Console.WriteLine("Ha finalizado el segundo ejercicio");
@@ -51,7 +67,8 @@ namespace ExtensionMethods.Exceptions.Unit_Test
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Mensaje: " + ex.Message);
+                Console.WriteLine("Tipo de excepcion: " + ex.Message);
             }
 
             Console.WriteLine("\nEjercicio 4");
@@ -61,8 +78,8 @@ namespace ExtensionMethods.Exceptions.Unit_Test
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("Tipo: " + ex.GetType());
+                Console.WriteLine("Mensaje: " + ex.Message);
+                Console.WriteLine("Tipo de excepcion: " + ex.GetType());
             }
 
             Console.ReadKey();
