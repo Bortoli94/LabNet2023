@@ -48,10 +48,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShipperLogic.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Practica.EF.Data\Practica.EF.Data.csproj">
+      <Project>{8FDD54BF-B3B6-4EF5-BF91-98EB5BDA02CE}</Project>
+      <Name>Practica.EF.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Practica.EF.Entities\Practica.EF.Entities.csproj">
+      <Project>{47905B31-4BB5-439B-8332-7E18542C3F2B}</Project>
+      <Name>Practica.EF.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
