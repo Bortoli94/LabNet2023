@@ -11,13 +11,28 @@ namespace Practica.EF.Logic
     {
         public void Add(Categories regedit)
         {
-            _context.Categories.Add(regedit);
-            _context.SaveChanges();
+            try
+            {
+                _context.Categories.Add(regedit);
+                _context.SaveChanges();
+            }
+            catch 
+            {
+                throw new Exception("Parámetros Inválidos");
+            }
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Categories.Remove(_context.Categories.First(x => x.CategoryID == id));
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new Exception("No existe Categoría con ese ID");
+            }
         }
 
         public List<Categories> GetAll()
@@ -27,7 +42,24 @@ namespace Practica.EF.Logic
 
         public void Update(Categories regedit)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var categoryUpdate = _context.Categories.Find(regedit.CategoryID);
+                categoryUpdate.CategoryName = regedit.CategoryName;
+                categoryUpdate.Description = regedit.Description;
+                _context.SaveChanges();
+            }
+            catch 
+            {
+                throw new Exception("Parámetros Inválidos");
+            }
+        }
+
+        public Categories Search(int id)
+        {
+            var result =  _context.Categories.Find(id);
+            
+            return result;
         }
     }
 }

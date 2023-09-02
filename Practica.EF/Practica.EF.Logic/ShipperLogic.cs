@@ -11,13 +11,38 @@ namespace Practica.EF.Logic
     {
         public void Add(Shippers regedit)
         {
-            _context.Shippers.Add(regedit);
-            _context.SaveChanges();
+            try
+            {
+                _context.Shippers.Add(regedit);
+                _context.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Parametros Invalidos");
+            }
+        }
+
+        public void Delete(int id)
+        {
+            try
+            {
+                _context.Shippers.Remove(_context.Shippers.First(x => x.ShipperID == id));
+                _context.SaveChanges();
+            }
+            catch 
+            {
+                throw new Exception("Transportista no Encontrado");
+            }
         }
 
         public List<Shippers> GetAll()
         {
             return _context.Shippers.ToList();
+        }
+        
+        public void Update(Shippers regedit)
+        {
+            throw new NotImplementedException();
         }
     }
 }
