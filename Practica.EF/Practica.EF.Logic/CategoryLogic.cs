@@ -1,4 +1,5 @@
-﻿using Practica.EF.Entities;
+﻿using Practica.EF.Data;
+using Practica.EF.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,17 @@ namespace Practica.EF.Logic
 {
     public class CategoryLogic : BaseLogic, IABMLogic<Categories>
     {
+        private NorthwindContext @object;
+
+        public CategoryLogic()
+        {
+        }
+
+        public CategoryLogic(NorthwindContext @object)
+        {
+            this.@object = @object;
+        }
+
         public void Add(Categories regedit)
         {
             try
@@ -61,5 +73,6 @@ namespace Practica.EF.Logic
             
             return result;
         }
+        
     }
 }
