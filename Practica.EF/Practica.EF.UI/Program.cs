@@ -123,7 +123,8 @@ namespace Practica.EF.UI
                         {
                             Console.WriteLine($"{shipper.ShipperID} - {shipper.CompanyName} - {shipper.Phone}");
                         }
-
+                        
+                        Console.WriteLine("\nPresione una tecla para volver al menu anterior...");
                         Console.ReadKey();
                         Console.Clear();
                         break;

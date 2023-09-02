@@ -13,8 +13,8 @@ namespace Practica.EF.UI
         {
             Console.WriteLine("PRACTICA 3 - ENTITY FRAMEWORK");
             Console.WriteLine("\nMenu principal - ENTIDADES");
-            Console.WriteLine("1-\tCategories");
-            Console.WriteLine("2-\tShippers");
+            Console.WriteLine("1-\tCategories (ABM COMPLETO)");
+            Console.WriteLine("2-\tShippers (SOLO VISUALIZAR TABLA)");
             Console.WriteLine("3-\tSALIR");
             Console.Write("\nSeleccione una opción: ");
 
