@@ -43,11 +43,11 @@ namespace Practica.EF.Logic.Tests
         public void GetAllTest()
         {
             var data = new List<Categories>
-        {
+            {
             new Categories { CategoryName = "Perfumeria" },
             new Categories { CategoryName = "Indumentaria" },
             new Categories { CategoryName = "Limpieza" },
-        }.AsQueryable();
+            }.AsQueryable();
 
             var mockSet = new Mock<DbSet<Categories>>();
             mockSet.As<IQueryable<Categories>>().Setup(m => m.Provider).Returns(data.Provider);
