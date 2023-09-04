@@ -29,5 +29,11 @@ namespace Linq.Practica.Logic
         {
             return _context.Customers.ToList();
         }
+
+        public List<Customers> First3RegionWA()
+        {
+            return _context.Customers.Where(c => c.Region == "WA").Take(3).ToList();
+        }
+
     }
 }

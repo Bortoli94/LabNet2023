@@ -1,4 +1,5 @@
-﻿using Linq.Practica.Logic;
+﻿using Linq.Practica.Entities;
+using Linq.Practica.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -128,21 +129,76 @@ namespace Linq.Practica.UI
                         break;
                     case 8:
                         Console.WriteLine("Ejercicio 8");
+                        Console.WriteLine("Query para devolver los primeros 3 Customers de la  Región WA");
+                        CustomerLogic ej8 = new CustomerLogic();
+                        foreach (var item in ej8.First3RegionWA())
+                        {
+                            Console.WriteLine($"{item.CustomerID} - {item.ContactName} - {item.Region}");
+                        }
+                                       
                         break;
                     case 9:
                         Console.WriteLine("Ejercicio 9");
+                        Console.WriteLine("Query para devolver lista de productos ordenados por nombre");
+                        ProductLogic ej9 = new ProductLogic();
+                        foreach (var item in ej9.OrderByName())
+                        {
+                            Console.WriteLine($"{item.ProductID}\t{item.ProductName}");
+                        }
                         break;
                     case 10:
                         Console.WriteLine("Ejercicio 10");
+                        Console.WriteLine("Query para devolver lista de productos ordenados por unit in stock de mayor a menor.");
+                        ProductLogic ej10 = new ProductLogic();
+                        foreach (var item in ej10.OrderByUnitInStock())
+                        {
+                            Console.WriteLine($"{item.UnitsInStock}\t{item.ProductName}");
+                        }
                         break;
                     case 11:
                         Console.WriteLine("Ejercicio 11");
+                        Console.WriteLine("Query para devolver las distintas categorías asociadas a los productos");
+                        ProductLogic productLogic = new ProductLogic();
+                        CategoryLogic categoryLogic = new CategoryLogic();
+                        var listProduct = productLogic.GetAll();
+                        var ListCategory = categoryLogic.GetAll();
+
+                        var queryEj11 = from Products in listProduct
+                                        join Categories in ListCategory on Products.CategoryID equals Categories.CategoryID
+                                        select new
+                                        {
+                                            Products.ProductName,
+                                            Categories.CategoryName
+                                        };
+                        foreach (var item in queryEj11)
+                        {
+                            Console.WriteLine($"{item.ProductName}  -  {item.CategoryName}");
+                        }
+
                         break;
                     case 12:
                         Console.WriteLine("Ejercicio 12");
+                        Console.WriteLine("Query para devolver el primer elemento de una lista de productos");
+                        ProductLogic ej12 = new ProductLogic();
+                        var listProduct2 = ej12.GetAll();
+
+                        var queryEj12 = listProduct2.First();
+
+                        Console.WriteLine($"{queryEj12.ProductID} - {queryEj12.ProductName}");
+
                         break;
                     case 13:
                         Console.WriteLine("Ejercicio 13");
+                        Console.WriteLine("Query para devolver los customer con la cantidad de ordenes asociadas");
+                        
+                        CustomerLogic customerLogic1 = new CustomerLogic();
+                        var listCustomerEj13 = customerLogic1.GetAll();
+                        
+                        foreach (Customers customer2 in listCustomerEj13)
+                        {
+                            Console.WriteLine($"{customer2.ContactName} - {customer2.Orders.Count()}");
+                        }
+
                         break;
                     case 14:
                         Console.WriteLine("El programa ha finalizado");

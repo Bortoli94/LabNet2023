@@ -23,5 +23,20 @@ namespace Linq.Practica.Logic
         {
             return _context.Products.FirstOrDefault(p => p.ProductID == id);
         }
+
+        public List<Products> OrderByName()
+        {
+            return _context.Products.OrderBy(p => p.ProductName).ToList();
+        }
+
+        public List<Products> OrderByUnitInStock()
+        {
+            return OrderByName().OrderByDescending(p => p.UnitsInStock).ToList();
+        }
+
+        public List<Products> GetAll()
+        {
+            return _context.Products.ToList();
+        }
     }
 }
