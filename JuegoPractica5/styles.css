@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;700&display=swap");
+
+* {
+  font-family: "Open Sans", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  max-height: 100%;
+  width: 100%;
+}
+
+html {
+  background-image: url("./Img/fondo-pagina.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+body {
+  background-color: rgba(0, 0, 0, 0.700);
+  color: #EFEFEF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#main {
+  margin-top: 10%;
+  background-color: #181b23;
+  width: 700px;
+  height: 500px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 25px rgba(131, 131, 131, 0.483);
+  display: flex;
+  flex-direction: column;
+}
+
+#header{
+  text-align: center;
+  height: 120px;
+  padding: 15px;
+  background-color: #080d1b;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+#header > p{
+ font-size: 15px;
+ font-weight: 300;
+ padding-top: 10px;
+}
+
+#content{
+  height: 250px;
+  display: flex;
+}
+
+#form{
+  width: 350px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 30px;
+}
+input{
+  border-radius: 20px;
+  font-size: 20px;
+  padding: 10px;
+  width: 70px;
+  border: none;
+  
+}
+#buttons{
+  display: flex;
+  gap: 25px;
+}
+
+button{
+  font-size: 20px;
+  border-radius: 20px;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.5s;
+  color: white;
+}
+button:hover{
+  transform: scale(1.2);
+}
+#inputButton{
+  background-color: #116f11;  
+  
+}
+#inputButton:hover{
+  background-color: #009d00;  
+}
+#inputButton:disabled{
+  background-color: #595b60;
+  cursor: not-allowed;
+  transform: scale(1);
+}
+#restartButton{
+  color: black;
+  background-color: #3cc2cf;
+  font-weight: 700;
+}
+#restartButton:hover{
+  background-color: #2d939c;
+}
+
+#content > div{
+  width: 350px;
+  padding: 15px;
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+#footer{
+  padding: 15px;
+  margin-left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+ul{
+  list-style: none;
+  display: flex;
+  gap: 60px;
+  justify-content: flex-start;
+}
+
+li{
+  font-size: 40px;
+  font-weight: 700;
+  padding: 0px 15px;
+  background-color: gray;
+  border-radius: 20px;
+}
+
+.fail{
+  background-color: #6a0b08;  
+}
+.win{
+  background-color: #009d00;  
+}
+.warning{
+  background-color: #9d9500;  
+  color: black;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: 700;
+}
+
+.losser{
+  background-color: #6a0b08;  
+  text-align: center;
+  border-radius: 5px;
+  font-weight: 700;
+}
+
+.winner{
+  background-color: #009d00; 
+  text-align: center;
+  border-radius: 5px;
+  font-weight: 700;
+}
