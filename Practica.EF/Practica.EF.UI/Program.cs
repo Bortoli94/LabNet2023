@@ -84,6 +84,7 @@ namespace Practica.EF.UI
                                         {
                                             categoryLogic.Update(new Categories
                                             {
+                                                CategoryID = idInt,
                                                 CategoryName = dic["name"],
                                                 Description = dic["description"]
                                             });
