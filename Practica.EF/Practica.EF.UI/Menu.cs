@@ -57,7 +57,5 @@ namespace Practica.EF.UI
             Console.WriteLine("-------------------------------------------------------------------");
             if (title != null) Console.WriteLine($"\n\t{title}");
         }
-
-
     }
 }
