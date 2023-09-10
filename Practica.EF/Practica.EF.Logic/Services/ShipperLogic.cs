@@ -55,7 +55,18 @@ namespace Practica.EF.Logic.Services
         
         public override void Update(ShipperDto dto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Shippers shippersUpdate = _context.Shippers.Find(dto.ShipperID);
+
+                shippersUpdate.CompanyName = dto.CompanyName;
+                shippersUpdate.Phone = dto.Phone;
+                _context.SaveChanges();
+            }
+            catch 
+            {
+                throw new Exception("Parámetros invalidos");
+            }
         }
     }
 }

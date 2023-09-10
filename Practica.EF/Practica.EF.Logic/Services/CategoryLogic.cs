@@ -14,9 +14,9 @@ namespace Practica.EF.Logic.Services
         {
         }
 
-        public CategoryLogic(NorthwindContext @object)
+        public CategoryLogic(NorthwindContext context)
         {
-            _context = @object;
+            _context = context;
         }
 
         public override void Add(CategoryDto dto)
@@ -25,7 +25,6 @@ namespace Practica.EF.Logic.Services
             {
                 var newCategory = new Categories()
                 {
-                    CategoryID = dto.CategoryID,
                     CategoryName = dto.CategoryName,
                     Description = dto.Description,
                 };

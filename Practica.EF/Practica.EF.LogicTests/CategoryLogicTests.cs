@@ -26,7 +26,6 @@ namespace Practica.EF.Logic.Tests
             //ACT
             categoryLogic.Add(new CategoryDto
             {
-                CategoryID = 1,
                 CategoryName = "name",
                 Description = "description"
             });
