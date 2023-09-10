@@ -1,5 +1,7 @@
 ﻿using Practica.EF.Entities;
+using Practica.EF.Entities.DTO;
 using Practica.EF.Logic;
+using Practica.EF.Logic.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +39,7 @@ namespace Practica.EF.UI
                                     dic = program.InsertValues();
                                     try
                                     {
-                                        categoryLogic.Add(new Categories
+                                        categoryLogic.Add(new CategoryDto
                                         {
                                             CategoryName = dic["name"],
                                             Description = dic["description"]
@@ -82,7 +84,7 @@ namespace Practica.EF.UI
                                         dic = program.InsertValues();
                                         try
                                         {
-                                            categoryLogic.Update(new Categories
+                                            categoryLogic.Update(new CategoryDto
                                             {
                                                 CategoryID = idInt,
                                                 CategoryName = dic["name"],

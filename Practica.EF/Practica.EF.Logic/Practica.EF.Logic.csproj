@@ -49,10 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseLogic.cs" />
-    <Compile Include="CategoryLogic.cs" />
+    <Compile Include="Services\CategoryLogic.cs" />
     <Compile Include="IABMLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShipperLogic.cs" />
+    <Compile Include="Services\ShipperLogic.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -67,5 +67,6 @@
       <Name>Practica.EF.Entities</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

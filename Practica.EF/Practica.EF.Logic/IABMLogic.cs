@@ -9,8 +9,8 @@ namespace Practica.EF.Logic
     public interface IABMLogic<T>
     {
         List<T> GetAll();
-        void Add(T regedit);
-        void Delete(int id);
-        void Update(T regedit);
+        void Add(T dto);
+        void Delete(int dto);
+        void Update(T id);
     }
 }

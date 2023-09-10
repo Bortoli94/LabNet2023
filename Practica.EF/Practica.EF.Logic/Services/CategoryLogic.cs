@@ -1,14 +1,15 @@
 ﻿using Practica.EF.Data;
 using Practica.EF.Entities;
+using Practica.EF.Entities.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Practica.EF.Logic
+namespace Practica.EF.Logic.Services
 {
-    public class CategoryLogic : BaseLogic, IABMLogic<Categories>
+    public class CategoryLogic : BaseLogic, IABMLogic<CategoryDto>
     {
         private NorthwindContext @object;
 
@@ -21,11 +22,17 @@ namespace Practica.EF.Logic
             this.@object = @object;
         }
 
-        public void Add(Categories regedit)
+        public void Add(CategoryDto dto)
         {
             try
             {
-                _context.Categories.Add(regedit);
+                var newCategory = new Categories()
+                {
+                    CategoryID = dto.CategoryID,
+                    CategoryName = dto.CategoryName,
+                    Description = dto.Description,
+                };
+                _context.Categories.Add(newCategory);
                 _context.SaveChanges();
             }
             catch 
@@ -47,18 +54,27 @@ namespace Practica.EF.Logic
             }
         }
 
-        public List<Categories> GetAll()
+        public List<CategoryDto> GetAll()
         {
-            return _context.Categories.ToList();
+            IEnumerable<Categories> categories = _context.Categories.AsEnumerable();
+            List<CategoryDto> list = categories.Select(c => new CategoryDto
+            {
+                CategoryID = c.CategoryID,
+                CategoryName = c.CategoryName,
+                Description = c.Description,
+            }).ToList();
+            
+            return list;
         }
 
-        public void Update(Categories regedit)
+        public void Update(CategoryDto dto)
         {
             try
             {
-                var categoryUpdate = _context.Categories.Find(regedit.CategoryID);
-                categoryUpdate.CategoryName = regedit.CategoryName;
-                categoryUpdate.Description = regedit.Description;
+                Categories categoryUpdate = _context.Categories.Find(dto.CategoryID);
+                
+                categoryUpdate.CategoryName = dto.CategoryName;
+                categoryUpdate.Description = dto.Description;
                 _context.SaveChanges();
             }
             catch 
