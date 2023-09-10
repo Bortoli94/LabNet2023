@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Practica.EF.Logic
 {
-    public abstract class BaseLogic
+    public abstract class BaseLogic<T> : IABMLogic<T>
     {
         protected readonly NorthwindContext _context;
 
@@ -15,5 +15,9 @@ namespace Practica.EF.Logic
         {
             _context = new NorthwindContext();
         }
+        public abstract List<T> GetAll();
+        public abstract void Add(T dto);
+        public abstract void Delete(int id);
+        public abstract void Update(T dto);
     }
 }

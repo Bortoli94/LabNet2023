@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using Practica.EF.Logic.Services;
 
 namespace Practica.EF.Logic.Tests
 {

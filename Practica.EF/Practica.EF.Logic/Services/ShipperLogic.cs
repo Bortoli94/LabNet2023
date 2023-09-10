@@ -3,14 +3,13 @@ using Practica.EF.Entities.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Practica.EF.Logic.Services
 {
-    public class ShipperLogic : BaseLogic, IABMLogic<ShipperDto>
+    public class ShipperLogic : BaseLogic<ShipperDto>, IABMLogic<ShipperDto>
     {
-        public void Add(ShipperDto dto)
+        public override void Add(ShipperDto dto)
         {
             try
             {
@@ -28,7 +27,7 @@ namespace Practica.EF.Logic.Services
             }
         }
 
-        public void Delete(int id)
+        public override void Delete(int id)
         {
             try
             {
@@ -41,7 +40,7 @@ namespace Practica.EF.Logic.Services
             }
         }
 
-        public List<ShipperDto> GetAll()
+        public override List<ShipperDto> GetAll()
         {
             IEnumerable<Shippers> shipper = _context.Shippers.AsEnumerable();
             List<ShipperDto> list = shipper.Select(s => new ShipperDto
@@ -54,7 +53,7 @@ namespace Practica.EF.Logic.Services
             return list;
         }
         
-        public void Update(ShipperDto dto)
+        public override void Update(ShipperDto dto)
         {
             throw new NotImplementedException();
         }

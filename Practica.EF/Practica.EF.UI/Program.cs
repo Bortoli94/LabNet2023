@@ -1,12 +1,7 @@
-﻿using Practica.EF.Entities;
-using Practica.EF.Entities.DTO;
-using Practica.EF.Logic;
+﻿using Practica.EF.Entities.DTO;
 using Practica.EF.Logic.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Practica.EF.UI
 {

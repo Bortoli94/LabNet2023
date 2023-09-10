@@ -1,28 +1,15 @@
-﻿using Practica.EF.Data;
-using Practica.EF.Entities;
+﻿using Practica.EF.Entities;
 using Practica.EF.Entities.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Practica.EF.Logic.Services
 {
-    public class CategoryLogic : BaseLogic, IABMLogic<CategoryDto>
+    public class CategoryLogic : BaseLogic<CategoryDto>, IABMLogic<CategoryDto>
     {
-        private NorthwindContext @object;
-
-        public CategoryLogic()
-        {
-        }
-
-        public CategoryLogic(NorthwindContext @object)
-        {
-            this.@object = @object;
-        }
-
-        public void Add(CategoryDto dto)
+        public override void Add(CategoryDto dto)
         {
             try
             {
@@ -41,7 +28,7 @@ namespace Practica.EF.Logic.Services
             }
         }
 
-        public void Delete(int id)
+        public override void Delete(int id)
         {
             try
             {
@@ -54,7 +41,7 @@ namespace Practica.EF.Logic.Services
             }
         }
 
-        public List<CategoryDto> GetAll()
+        public override List<CategoryDto> GetAll()
         {
             IEnumerable<Categories> categories = _context.Categories.AsEnumerable();
             List<CategoryDto> list = categories.Select(c => new CategoryDto
@@ -67,7 +54,7 @@ namespace Practica.EF.Logic.Services
             return list;
         }
 
-        public void Update(CategoryDto dto)
+        public override void Update(CategoryDto dto)
         {
             try
             {
@@ -83,11 +70,18 @@ namespace Practica.EF.Logic.Services
             }
         }
 
-        public Categories Search(int id)
+        public CategoryDto Search(int id)
         {
             var result =  _context.Categories.Find(id);
             
-            return result;
+            var categoriesDto = new CategoryDto()
+            {
+                CategoryID = result.CategoryID,
+                CategoryName = result.CategoryName,
+                Description = result.Description,
+            };
+            
+            return categoriesDto;
         }
         
     }
