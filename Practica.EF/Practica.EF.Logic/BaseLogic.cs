@@ -9,7 +9,7 @@ namespace Practica.EF.Logic
 {
     public abstract class BaseLogic<T> : IABMLogic<T>
     {
-        protected readonly NorthwindContext _context;
+        protected NorthwindContext _context;
 
         public BaseLogic()
         {

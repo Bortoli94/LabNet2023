@@ -1,4 +1,5 @@
-﻿using Practica.EF.Entities;
+﻿using Practica.EF.Data;
+using Practica.EF.Entities;
 using Practica.EF.Entities.DTO;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,15 @@ namespace Practica.EF.Logic.Services
 {
     public class CategoryLogic : BaseLogic<CategoryDto>, IABMLogic<CategoryDto>
     {
+        public CategoryLogic()
+        {
+        }
+
+        public CategoryLogic(NorthwindContext @object)
+        {
+            _context = @object;
+        }
+
         public override void Add(CategoryDto dto)
         {
             try

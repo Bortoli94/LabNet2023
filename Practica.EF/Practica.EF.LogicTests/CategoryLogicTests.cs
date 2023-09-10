@@ -1,15 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Practica.EF.Data;
 using Practica.EF.Entities;
-using Practica.EF.Logic;
 using Moq;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity;
 using Practica.EF.Logic.Services;
+using Practica.EF.Entities.DTO;
 
 namespace Practica.EF.Logic.Tests
 {
@@ -27,7 +24,7 @@ namespace Practica.EF.Logic.Tests
             CategoryLogic categoryLogic = new CategoryLogic(mockContext.Object);
 
             //ACT
-            categoryLogic.Add(new Categories
+            categoryLogic.Add(new CategoryDto
             {
                 CategoryID = 1,
                 CategoryName = "name",
