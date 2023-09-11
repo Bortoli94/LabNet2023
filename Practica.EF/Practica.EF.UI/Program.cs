@@ -71,30 +71,23 @@ namespace Practica.EF.UI
                                     program.ShowTable(categoryLogic, "MODIFICAR");
                                     Console.Write("Ingrese la ID del campo que desea modificar: ");
                                     idString = Console.ReadLine();
-                                    int.TryParse(idString, out idInt);
-                                    var search = categoryLogic.Search(idInt);
-                                    if (search != null)
+                                    try
                                     {
+                                        idInt = Convert.ToInt32(idString);
+                                        var search = categoryLogic.Search(idInt);
                                         Console.WriteLine($"Categoria {search.CategoryID} - {search.CategoryName}  SELECCIONADA");
                                         dic = program.InsertValues();
-                                        try
+                                        categoryLogic.Update(new CategoryDto
                                         {
-                                            categoryLogic.Update(new CategoryDto
-                                            {
-                                                CategoryID = idInt,
-                                                CategoryName = dic["name"],
-                                                Description = dic["description"]
-                                            });
-                                            Console.WriteLine("Operacion exitosa");
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            Console.WriteLine(ex.Message);
-                                        }
+                                            CategoryID = idInt,
+                                            CategoryName = dic["name"],
+                                            Description = dic["description"]
+                                        });
+                                        Console.WriteLine("Operacion exitosa");
                                     }
-                                    else
+                                    catch (Exception ex)
                                     {
-                                        Console.WriteLine("No existe Categoría con ese ID");
+                                        Console.WriteLine(ex.Message);
                                     }
                                     Console.WriteLine("\nPresione una tecla para continuar...");
                                     Console.ReadKey();

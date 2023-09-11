@@ -8,5 +8,6 @@ namespace Practica.EF.Logic
         void Add(T dto);
         void Delete(int dto);
         void Update(T id);
+        T Search (int id);
     }
 }

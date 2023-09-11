@@ -15,5 +15,6 @@ namespace Practica.EF.Logic
         public abstract void Add(T dto);
         public abstract void Delete(int id);
         public abstract void Update(T dto);
+        public abstract T Search (int id);
     }
 }

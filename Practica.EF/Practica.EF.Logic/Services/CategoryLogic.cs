@@ -79,18 +79,25 @@ namespace Practica.EF.Logic.Services
             }
         }
 
-        public CategoryDto Search(int id)
+        public override CategoryDto Search(int id)
         {
-            var result =  _context.Categories.Find(id);
-            
-            var categoriesDto = new CategoryDto()
+            try
             {
-                CategoryID = result.CategoryID,
-                CategoryName = result.CategoryName,
-                Description = result.Description,
-            };
-            
-            return categoriesDto;
+                var result = _context.Categories.First( c => c.CategoryID == id);
+
+                var categoriesDto = new CategoryDto()
+                {
+                    CategoryID = result.CategoryID,
+                    CategoryName = result.CategoryName,
+                    Description = result.Description,
+                };
+                
+                return categoriesDto;
+            }
+            catch
+            {
+                throw new Exception("Categoria no encontrada");
+            }
         }
         
     }

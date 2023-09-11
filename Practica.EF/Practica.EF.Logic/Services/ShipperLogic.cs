@@ -68,5 +68,26 @@ namespace Practica.EF.Logic.Services
                 throw new Exception("Parámetros invalidos");
             }
         }
+
+        public override ShipperDto Search(int id)
+        {
+            try
+            {
+                var result = _context.Shippers.First(s => s.ShipperID == id);
+
+                var shipperDto = new ShipperDto()
+                {
+                    ShipperID = result.ShipperID,
+                    CompanyName = result.CompanyName,
+                    Phone = result.Phone,
+                };
+
+                return shipperDto;
+            }
+            catch
+            {
+                throw new Exception("Shipper no encontrado");
+            }
+        }
     }
 }
