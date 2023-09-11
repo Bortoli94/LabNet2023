@@ -41,7 +41,7 @@ namespace Practica.EF.Logic.Services
         {
             try
             {
-                _context.Categories.Remove(_context.Categories.First(x => x.CategoryID == id));
+                _context.Categories.Remove(_context.Categories.First(c => c.CategoryID == id));
                 _context.SaveChanges();
             }
             catch (Exception)
@@ -67,7 +67,7 @@ namespace Practica.EF.Logic.Services
         {
             try
             {
-                Categories categoryUpdate = _context.Categories.Find(dto.CategoryID);
+                Categories categoryUpdate = _context.Categories.First(c=> c.CategoryID == dto.CategoryID);
                 
                 categoryUpdate.CategoryName = dto.CategoryName;
                 categoryUpdate.Description = dto.Description;

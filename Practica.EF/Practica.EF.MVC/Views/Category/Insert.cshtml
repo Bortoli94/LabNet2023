@@ -1,0 +1,24 @@
+﻿@model Practica.EF.Entities.DTO.CategoryDto
+
+@{
+    ViewBag.Title = "Insertar Categoria";
+}
+
+
+<h1>Insertar nueva categoria</h1>
+
+@using (Html.BeginForm("Insert", "Category", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <label>Nombre: </label>
+                @Html.TextBoxFor(c => c.CategoryName, "", new { @class = "form-control" })
+            </div>
+            <label>Descripcion: </label> @Html.TextBoxFor(c => c.Description, "", new { @class = "form-control" })
+        </div>
+    </div>
+    <br />
+    <input type="submit" class="btn btn-success" value="Guardar" />
+    <a class="btn btn-warning" href="@Url.Action("List", "Category")">Volver</a>
+}
