@@ -1,0 +1,23 @@
+﻿@model Practica.EF.Entities.DTO.ShipperDto
+
+@{
+    ViewBag.Title = "Modificar Shipper";
+}
+
+<h1>Vista para modificar</h1>
+@using (Html.BeginForm("Update", "Shipper", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <label>ID: </label>
+            <input type="text" value="@Model.ShipperID" disabled class="form-control" />
+            @Html.HiddenFor(s => s.ShipperID)
+            <label>Nombre Compania: </label>
+            @Html.TextBoxFor(s => s.CompanyName, "", new { @class = "form-control" })
+            <label>Telefono: </label> @Html.TextBoxFor(s => s.Phone, "", new { @class = "form-control" })
+        </div>
+    </div>
+    <br />
+    <input type="submit" class="btn btn-success" value="Guardar" />
+    <a class="btn btn-warning" href="@Url.Action("List", "Shipper")">Volver</a>
+}

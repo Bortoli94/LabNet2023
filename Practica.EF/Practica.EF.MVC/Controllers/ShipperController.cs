@@ -6,14 +6,14 @@ using System.Web.Mvc;
 
 namespace Practica.EF.MVC.Controllers
 {
-    public class CategoryController : Controller
+    public class ShipperController : Controller
     {
-        CategoryLogic logic = new CategoryLogic();
+        ShipperLogic logic = new ShipperLogic();
 
         public ActionResult List()
         {
-            List<CategoryDto> categories = logic.GetAll();
-            return View(categories);
+            List<ShipperDto> shippers = logic.GetAll();
+            return View(shippers);
         }
 
         public ActionResult Insert()
@@ -21,7 +21,7 @@ namespace Practica.EF.MVC.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Insert(CategoryDto dto)
+        public ActionResult Insert(ShipperDto dto)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace Practica.EF.MVC.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction("ViewError", "Error", new { ex.Message, value = "Category" });
+                return RedirectToAction("ViewError", "Error", new { ex.Message, value = "Shipper" });
             }
         }
 
@@ -44,8 +44,9 @@ namespace Practica.EF.MVC.Controllers
         {
             return View(logic.Search(id));
         }
+
         [HttpPost]
-        public ActionResult Update(CategoryDto dto)
+        public ActionResult Update(ShipperDto dto)
         {
             try
             {
@@ -54,10 +55,8 @@ namespace Practica.EF.MVC.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction("ViewError", "Error", new { ex.Message , value = "Category"});
+                return RedirectToAction("ViewError", "Error", new { ex.Message , value = "Shipper"});
             }
         }
-
-
     }
 }

@@ -1,0 +1,35 @@
+﻿@model List<Practica.EF.Entities.DTO.ShipperDto>
+
+@{
+    ViewBag.Title = "Shipper";
+}
+
+<h1>Shipper</h1>
+<br />
+<div>
+    @Html.ActionLink("Insertar Nuevo Shipper", "Insert", "", new { @class = "btn btn-primary" })
+</div>
+<br />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre Compania</th>
+            <th scope="col">Telefono</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@item.ShipperID</th>
+                <td>@item.CompanyName</td>
+                <td>@item.Phone</td>
+                <td>@Html.ActionLink("Modificar", "Update", new { id = item.ShipperID }, new { @class = "btn btn-info" })</td>
+                <td>@Html.ActionLink("Eliminar", "Delete", new { id = item.ShipperID }, new { onclick = "return confirm('Esta seguro de borrar?')", @class = "btn btn-danger" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
