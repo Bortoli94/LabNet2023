@@ -21,9 +21,13 @@ namespace Practica.EF.Logic.Services
                 _context.Shippers.Add(newShipper);
                 _context.SaveChanges();
             }
-            catch
+            catch (System.Data.Entity.Validation.DbEntityValidationException)
             {
-                throw new Exception("Parametros Invalidos");
+                throw new Exception("Parametros Inválidos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
@@ -34,9 +38,13 @@ namespace Practica.EF.Logic.Services
                 _context.Shippers.Remove(_context.Shippers.First(x => x.ShipperID == id));
                 _context.SaveChanges();
             }
-            catch 
+            catch (InvalidOperationException)
             {
-                throw new Exception("Transportista no Encontrado");
+                throw new Exception("No existe registro con ese ID");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
@@ -63,9 +71,17 @@ namespace Practica.EF.Logic.Services
                 shippersUpdate.Phone = dto.Phone;
                 _context.SaveChanges();
             }
-            catch 
+            catch (InvalidOperationException)
             {
-                throw new Exception("Parámetros invalidos");
+                throw new Exception("No existe registro con ese ID");
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException)
+            {
+                throw new Exception("Parametros Inválidos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
@@ -84,9 +100,13 @@ namespace Practica.EF.Logic.Services
 
                 return shipperDto;
             }
-            catch
+            catch (InvalidOperationException)
             {
-                throw new Exception("Shipper no encontrado");
+                throw new Exception("No existe registro con ese ID");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
     }

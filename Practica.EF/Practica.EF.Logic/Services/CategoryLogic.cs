@@ -31,9 +31,13 @@ namespace Practica.EF.Logic.Services
                 _context.Categories.Add(newCategory);
                 _context.SaveChanges();
             }
-            catch 
+            catch (System.Data.Entity.Validation.DbEntityValidationException)
             {
-                throw new Exception("Parámetros Inválidos");
+                throw new Exception("Parametros Inválidos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
@@ -44,9 +48,13 @@ namespace Practica.EF.Logic.Services
                 _context.Categories.Remove(_context.Categories.First(c => c.CategoryID == id));
                 _context.SaveChanges();
             }
-            catch (Exception)
+            catch (InvalidOperationException)
             {
-                throw new Exception("No existe Categoría con ese ID");
+                throw new Exception("No existe registro con ese ID");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
@@ -73,9 +81,17 @@ namespace Practica.EF.Logic.Services
                 categoryUpdate.Description = dto.Description;
                 _context.SaveChanges();
             }
-            catch 
+            catch (InvalidOperationException)
             {
-                throw new Exception("Parámetros Inválidos");
+                throw new Exception("No existe registro con ese ID");
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException)
+            {
+                throw new Exception("Parametros Inválidos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
@@ -94,9 +110,13 @@ namespace Practica.EF.Logic.Services
                 
                 return categoriesDto;
             }
-            catch
+            catch (InvalidOperationException)
             {
-                throw new Exception("Categoria no encontrada");
+                throw new Exception("No existe registro con ese ID");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
         
