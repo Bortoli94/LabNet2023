@@ -3,23 +3,83 @@
 }
 
 <div class="jumbotron">
-    <h1>Practica 6</h1>
-    <p class="lead">Esta es la resolucion de la practica 6 del laboratorio .net 2023</p>
+    <h1>Practica 7</h1>
+    <p class="lead">Esta es la resolucion de la practica 7 del laboratorio .net 2023</p>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2 class="text-center">Categories</h2>
-        <p class="text-center">
-            ABM de la entidad Categories
-        </p>
-        <p><a class="btn btn-primary btn-sm btn-block" href="@Url.Action("List", "Category")">Ir</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2 class="text-center">Shippers</h2>
-        <p class="text-center">
-            ABM de la entidad Shippers
-        </p>
-        <p><a class="btn btn-primary btn-sm btn-block" href="@Url.Action("List", "Shipper")">Ir</a></p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2 class="text-center">Categories</h2>
+            <p class="text-center">
+                ABM de la entidad Categories
+            </p>
+            <p><a class="btn btn-primary btn-sm btn-block" href="@Url.Action("List", "Category")">Ir</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2 class="text-center">Shippers</h2>
+            <p class="text-center">
+                ABM de la entidad Shippers
+            </p>
+            <p><a class="btn btn-primary btn-sm btn-block" href="@Url.Action("List", "Shipper")">Ir</a></p>
+        </div>
     </div>
 </div>
+
+<br />
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <h3 class="text-center">Dolar Oficial</h3>
+            <div class="col-md-6">
+                <h4 class="text-center">Compra</h4>
+                <p id="officialDollarPurchase" class="text-center"></p>
+            </div>
+            <div class="col-md-6">
+                <h4 class="text-center">Venta</h4>
+                <p id="officialDollarSale" class="text-center"></p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <h3 class="text-center">Dolar Blue</h3>
+            <div class="col-md-6">
+                <h4 class="text-center">Compra</h4>
+                <p id="dollarBluePurchase" class="text-center"></p>
+            </div>
+            <div class="col-md-6">
+                <h4 class="text-center">Venta</h4>
+                <p id="dollarBlueSale" class="text-center"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        const officialDollarPurchase = document.getElementById("officialDollarPurchase")
+        const officialDollarSale = document.getElementById("officialDollarSale")
+        const dollarBluePurchase = document.getElementById("dollarBluePurchase")
+        const dollarBlueSale = document.getElementById("dollarBlueSale")
+
+        const getMoney = (money) => {
+            return fetch("https://www.dolarsi.com/api/api.php?type=valoresprincipales")
+                .then((response) => response.json())
+                .then((data) => {
+                    let reply = data.find(item => item.casa.nombre === money)
+                    return reply;
+                })
+                .catch((error) => console.log(error));
+        };
+
+        async function showMoney(inputMoney, purchase, sale) {
+            let dolarValue = await getMoney(inputMoney);
+            purchase.innerText = "$" + dolarValue.casa.compra
+            sale.innerText = "$" + dolarValue.casa.venta
+        }
+        showMoney("Dolar Oficial", officialDollarPurchase, officialDollarSale );
+        showMoney("Dolar Blue", dollarBluePurchase, dollarBlueSale);
+
+    </script>
+}
