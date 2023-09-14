@@ -65,7 +65,7 @@ namespace Practica.EF.Logic.Services
         {
             try
             {
-                Shippers shippersUpdate = _context.Shippers.Find(dto.ShipperID);
+                Shippers shippersUpdate = _context.Shippers.First(s => s.ShipperID == dto.ShipperID);
 
                 shippersUpdate.CompanyName = dto.CompanyName;
                 shippersUpdate.Phone = dto.Phone;
