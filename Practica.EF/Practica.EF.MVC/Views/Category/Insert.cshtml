@@ -14,6 +14,7 @@
             <div>
                 <label>Nombre: </label>
                 @Html.TextBoxFor(c => c.CategoryName, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.CategoryName, "", new { @class = "text-danger" })
             </div>
             <label>Descripcion: </label> @Html.TextBoxFor(c => c.Description, "", new { @class = "form-control" })
         </div>
