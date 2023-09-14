@@ -12,8 +12,11 @@
             <label>ID: </label>
             <input type="text" value="@Model.ShipperID" disabled class="form-control" />
             @Html.HiddenFor(s => s.ShipperID)
-            <label>Nombre Compania: </label>
-            @Html.TextBoxFor(s => s.CompanyName, "", new { @class = "form-control" })
+            <div>
+                <label>Nombre compania: </label>
+                @Html.TextBoxFor(s => s.CompanyName, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(s => s.CompanyName, "", new { @class = "text-danger" })
+            </div>
             <label>Telefono: </label> @Html.TextBoxFor(s => s.Phone, "", new { @class = "form-control" })
         </div>
     </div>
