@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 style="text-align: center;">Shippers</h1>
+  <h1 style="text-align: center">Shippers</h1>
   <button
     mat-raised-button
     color="primary"
@@ -105,6 +105,9 @@
                 autocomplete="off"
                 formControlName="companyName"
               />
+              <mat-error>
+                Este campo es <strong>obligatorio</strong>
+              </mat-error>
             </mat-form-field>
           </div>
           <div class="row">
@@ -116,6 +119,9 @@
                 formControlName="phone"
                 placeholder="Telefono"
               />
+              <mat-error>
+                El teléfono no debe tener más de 24 caracteres.
+              </mat-error>
             </mat-form-field>
           </div>
         </div>

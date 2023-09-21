@@ -26,7 +26,7 @@ export class ShippersTableComponent implements OnInit {
     this.formShipper = this.fb.group({
       Id: [{ value: '', disabled: true }],
       companyName: ['', Validators.required],
-      phone: [''],
+      phone: ['', Validators.maxLength(24)],
     });
   }
 
