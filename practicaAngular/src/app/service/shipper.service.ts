@@ -17,21 +17,16 @@ export class ShipperService {
     return this.http.get<Shippers[]>(this.apiUrl);
   }
 
-  getById(id: number) : Observable<Shippers>{
-    let url = `${this.apiUrl}/${id}`
-    return this.http.get<Shippers>(url)
-  }
-
-  insertShipper(shipperRequest: Shippers){
+  insertShipper(shipperRequest: Shippers) : Observable<any>{
     return this.http.post(this.apiUrl, shipperRequest);
   }
   
-  deleteShipper(id: number){
+  deleteShipper(id: number): Observable<any>{
     let url = `${this.apiUrl}/${id}`
     return this.http.delete(url)
   }
 
-  editShipper(shipperRequest: Shippers){
+  editShipper(shipperRequest: Shippers): Observable<any>{
     return this.http.put(this.apiUrl, shipperRequest);
   }
 
