@@ -1,0 +1,12 @@
+table{
+    background-color: #00000058;
+    box-shadow: 0px 0px 25px rgb(131, 131, 131);
+}
+th, td{
+    color: #efefef;
+}
+
+th{
+    font-weight: 500;
+    font-size: large;
+}
