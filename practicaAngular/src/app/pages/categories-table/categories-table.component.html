@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 style="text-align: center; color:white">CATEGORIAS</h1>
+  <h1 style="text-align: center; color: white">CATEGORIAS</h1>
   <button
     mat-raised-button
     color="primary"
@@ -12,46 +12,46 @@
   <div class="row">
     <div class="col-md-12">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-          <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef>ID</th>
-            <td mat-cell *matCellDef="let element">{{ element.CategoryID }}</td>
-          </ng-container>
-        
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef>Nombre Categoria</th>
-            <td mat-cell *matCellDef="let element">{{ element.CategoryName }}</td>
-          </ng-container>
-        
-          <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef>Descripcion</th>
-            <td mat-cell *matCellDef="let element">{{ element.Description }}</td>
-          </ng-container>
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let element">{{ element.CategoryID }}</td>
+        </ng-container>
 
-          <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-            <td mat-cell *matCellDef="let element" style="text-align: center">
-              <button
-                mat-mini-fab
-                color="primary"
-                (click)="modalEditCategory(element)"
-                data-bs-toggle="modal"
-                data-bs-target="#formModal"
-              >
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button
-                mat-mini-fab
-                color="warn"
-                (click)="deleteCategory(element.CategoryID)"
-              >
-                <mat-icon>delete</mat-icon>
-              </button>
-            </td>
-          </ng-container>
-        
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Nombre Categoria</th>
+          <td mat-cell *matCellDef="let element">{{ element.CategoryName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+          <td mat-cell *matCellDef="let element">{{ element.Description }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+          <td mat-cell *matCellDef="let element" style="text-align: center">
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="modalEditCategory(element)"
+              data-bs-toggle="modal"
+              data-bs-target="#formModal"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="deleteCategory(element.CategoryID)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
     </div>
   </div>
 </div>
@@ -107,16 +107,16 @@
                 formControlName="categoryName"
               />
               <mat-error
-              *ngIf="formCategory.get('categoryName')?.hasError('required')"
-            >
-              Este campo es <strong>obligatorio</strong>
-            </mat-error>
-            <mat-error
-              *ngIf="formCategory.get('categoryName')?.hasError('maxlength')"
-              class="text-danger"
-            >
-              La longitud máxima es <strong>15 caracteres</strong>.
-            </mat-error>
+                *ngIf="formCategory.get('categoryName')?.hasError('required')"
+              >
+                Este campo es <strong>obligatorio</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="formCategory.get('categoryName')?.hasError('maxlength')"
+                class="text-danger"
+              >
+                La longitud máxima es <strong>15 caracteres</strong>.
+              </mat-error>
             </mat-form-field>
           </div>
           <div class="row">
