@@ -64,7 +64,7 @@ export class CategoriesTableComponent implements OnInit {
           icon: 'success',
           title: 'Operación exitosa',
           text:
-            'La compania ' +
+            'La categoría ' +
             categoryInsert.CategoryName +
             ' ha sido agregada exitosamente!!',
         });
