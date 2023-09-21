@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 style="text-align: center">Shippers</h1>
+  <h1 style="text-align: center; color: white">PROVEEDORES</h1>
   <button
     mat-raised-button
     color="primary"
@@ -18,12 +18,12 @@
         </ng-container>
 
         <ng-container matColumnDef="companyName">
-          <th mat-header-cell *matHeaderCellDef>CompanyName</th>
+          <th mat-header-cell *matHeaderCellDef>Nombre Proveedor</th>
           <td mat-cell *matCellDef="let element">{{ element.CompanyName }}</td>
         </ng-container>
 
         <ng-container matColumnDef="phone">
-          <th mat-header-cell *matHeaderCellDef>Phone</th>
+          <th mat-header-cell *matHeaderCellDef>Telefono</th>
           <td mat-cell *matCellDef="let element">{{ element.Phone }}</td>
         </ng-container>
 
@@ -98,7 +98,7 @@
 
           <div class="row">
             <mat-form-field appearance="fill">
-              <mat-label>Nombre Compania</mat-label>
+              <mat-label>Nombre Proveedor</mat-label>
               <input
                 matInput
                 placeholder="Nombre Compania"
