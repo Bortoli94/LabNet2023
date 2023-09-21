@@ -106,9 +106,17 @@
                 autocomplete="off"
                 formControlName="categoryName"
               />
-              <mat-error>
-                Este campo es <strong>obligatorio</strong>
-              </mat-error>
+              <mat-error
+              *ngIf="formCategory.get('categoryName')?.hasError('required')"
+            >
+              Este campo es <strong>obligatorio</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="formCategory.get('categoryName')?.hasError('maxlength')"
+              class="text-danger"
+            >
+              La longitud máxima es <strong>15 caracteres</strong>.
+            </mat-error>
             </mat-form-field>
           </div>
           <div class="row">

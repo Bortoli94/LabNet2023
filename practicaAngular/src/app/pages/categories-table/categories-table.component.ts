@@ -25,7 +25,7 @@ export class CategoriesTableComponent implements OnInit {
   ) {
     this.formCategory = this.fb.group({
       Id: [{ value: '', disabled: true }],
-      categoryName: ['', Validators.required ],
+      categoryName: ['', [Validators.required, Validators.maxLength(15)] ],
       description: [''],
     });
   }

@@ -105,8 +105,16 @@
                 autocomplete="off"
                 formControlName="companyName"
               />
-              <mat-error>
+              <mat-error
+                *ngIf="formShipper.get('companyName')?.hasError('required')"
+              >
                 Este campo es <strong>obligatorio</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="formShipper.get('companyName')?.hasError('maxlength')"
+                class="text-danger"
+              >
+                La longitud máxima es <strong>40 caracteres</strong>.
               </mat-error>
             </mat-form-field>
           </div>
@@ -120,7 +128,7 @@
                 placeholder="Telefono"
               />
               <mat-error>
-                El teléfono no debe tener más de 24 caracteres.
+                El teléfono no debe tener más de <strong>24 caracteres</strong>.
               </mat-error>
             </mat-form-field>
           </div>
