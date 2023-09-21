@@ -19,5 +19,15 @@ namespace Practica.EF.API
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+        
+        protected void Application_BeginRequest()
+        {
+            if (Request.HttpMethod == "OPTIONS")
+            {
+                Response.AddHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+                Response.AddHeader("Access-Control-Allow-Headers", "Content-Type");
+                Response.End();
+            }
+        }
     }
 }

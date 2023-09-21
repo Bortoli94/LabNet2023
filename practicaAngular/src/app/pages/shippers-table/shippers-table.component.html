@@ -1,0 +1,95 @@
+<div class="container">
+  <button mat-raised-button color="primary" (click)="openForm = !openForm">Agregar</button>
+  <div class="row">
+    <div class="col-md-12">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let element">{{ element.ShipperID }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="companyName">
+          <th mat-header-cell *matHeaderCellDef>CompanyName</th>
+          <td mat-cell *matCellDef="let element">{{ element.CompanyName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef>Phone</th>
+          <td mat-cell *matCellDef="let element">{{ element.Phone }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+          <td mat-cell *matCellDef="let element" style="text-align: center;">
+            <button mat-mini-fab color="primary" (click)="modalEditShipper(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-mini-fab color="warn" (click)="deleteShipper(element.ShipperID)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="openForm">
+  <div class="row">
+    <div class="col-sm-3">
+      <form [formGroup]="formShipper" (ngSubmit)="onSubmitShipper()">
+        <h1>Formulario</h1>
+        <mat-form-field appearance="fill" *ngIf="!isFormMode" >
+          <mat-label>Id</mat-label>
+          <input
+            matInput
+            placeholder="Id"
+            autocomplete="off"
+            formControlName="Id"
+          />
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre Compania</mat-label>
+          <input
+            matInput
+            placeholder="Nombre Compania"
+            autocomplete="off"
+            formControlName="companyName"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Telefono</mat-label>
+          <input
+            matInput
+            autocomplete="off"
+            formControlName="phone"
+            placeholder="Telefono"
+          />
+        </mat-form-field>
+        <br />
+        <button
+          mat-fab
+          extended
+          color="primary"
+          [disabled]="formShipper.invalid"
+          type="submit"
+        >
+          {{isFormMode ? 'Insertar' : 'Modificar'}}
+        </button>
+        <button
+          mat-fab
+          extended
+          color="warn"
+          type="button"
+          (click)="cancelForm()"
+        >Cancelar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
