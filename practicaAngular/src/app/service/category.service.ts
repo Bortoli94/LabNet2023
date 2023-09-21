@@ -8,12 +8,25 @@ import { Categories } from '../models/categoriesInterface';
   providedIn: 'root'
 })
 export class CategoryService {
-  apiUrl: string = environment.api;
+
+  apiUrl: string = environment.api + 'Categories';
 
   constructor(private hhtp: HttpClient) { }
 
   getAll():Observable<Categories[]>{
-    let url = `${this.apiUrl}Categories`;
-    return this.hhtp.get<Categories[]>(url)
+    return this.hhtp.get<Categories[]>(this.apiUrl);
+  }
+
+  insertCategory(categoryRequest: Categories) : Observable<any>{
+    return this.hhtp.post(this.apiUrl, categoryRequest);
+  }
+  
+  deleteCategory(id: number): Observable<any>{
+    let url = `${this.apiUrl}/${id}`
+    return this.hhtp.delete(url);
+  }
+
+  editCategory(categoryRequest: Categories): Observable<any>{
+    return this.hhtp.put(this.apiUrl, categoryRequest);
   }
 }

@@ -49,7 +49,7 @@ export class ShippersTableComponent implements OnInit {
         this.getAllShippers();
         this.formShipper.reset();
       },
-      error: (e) => {
+      error: () => {
         {
           Swal.fire({
             icon: 'error',
@@ -159,7 +159,7 @@ export class ShippersTableComponent implements OnInit {
       next: (result) => {
         this.dataSource.data = result as Shippers[];
       },
-      error: (e) => {
+      error: () => {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',

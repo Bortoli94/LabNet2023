@@ -1,19 +1,150 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>ID</th>
-      <td mat-cell *matCellDef="let element">{{ element.CategoryID }}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Nombre</th>
-      <td mat-cell *matCellDef="let element">{{ element.CategoryName }}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef>Descripcion</th>
-      <td mat-cell *matCellDef="let element">{{ element.Description }}</td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+
+
+<div class="container">
+  <h1 style="text-align: center;">Categories</h1>
+  <button
+    mat-raised-button
+    color="primary"
+    data-bs-toggle="modal"
+    data-bs-target="#formModal"
+    (click)="isFormMode = true"
+  >
+    Agregar Nuevo Campo
+  </button>
+  <div class="row">
+    <div class="col-md-12">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let element">{{ element.CategoryID }}</td>
+          </ng-container>
+        
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let element">{{ element.CategoryName }}</td>
+          </ng-container>
+        
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+            <td mat-cell *matCellDef="let element">{{ element.Description }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let element" style="text-align: center">
+              <button
+                mat-mini-fab
+                color="primary"
+                (click)="modalEditCategory(element)"
+                data-bs-toggle="modal"
+                data-bs-target="#formModal"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-mini-fab
+                color="warn"
+                (click)="deleteCategory(element.CategoryID)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="formModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <form [formGroup]="formCategory" (ngSubmit)="onSubmitCategory()">
+        <div class="modal-header">
+          <h2 class="modal-title" id="exampleModalLongTitle" style="margin: 0">
+            {{ isFormMode ? "INSERTAR NUEVO CAMPO" : "MODIFICAR CAMPO" }}
+          </h2>
+          <button
+            type="button"
+            mat-icon-button
+            color="warn"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            (click)="this.formCategory.reset()"
+            data-bs-dismiss="modal"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <mat-form-field appearance="fill" *ngIf="!isFormMode">
+              <mat-label>Id</mat-label>
+              <input
+                matInput
+                placeholder="Id"
+                autocomplete="off"
+                formControlName="Id"
+              />
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field appearance="fill">
+              <mat-label>Nombre Categoria</mat-label>
+              <input
+                matInput
+                placeholder="Nombre Categoria"
+                autocomplete="off"
+                formControlName="categoryName"
+              />
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Descripcion</mat-label>
+              <input
+                matInput
+                autocomplete="off"
+                placeholder="Descripcion"
+                formControlName="description"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            mat-fab
+            extended
+            color="primary"
+            [disabled]="formCategory.invalid"
+            type="submit"
+            data-bs-dismiss="modal"
+          >
+            {{ isFormMode ? "Insertar" : "Modificar" }}
+          </button>
+          <button
+            mat-fab
+            extended
+            color="warn"
+            type="button"
+            (click)="this.formCategory.reset()"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
